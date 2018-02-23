@@ -1,0 +1,20 @@
+
+   {      
+     "nom" : "Eddy Martin",
+     "telephone" : "514-123-9834",
+     "courriel":"emairtin@outlook.com",
+     "id": 1    
+   },
+   {  
+     "nom" : "Claude Fortin",
+     "telephone" : "514-111-9114",
+     "courriel":"emairtin@outlook.com",
+     "id": 2   
+   },
+   { 
+      "nom" : "Luc Marcil",
+     "telephone" : "514-222-9233",
+     "courriel":"emairtin@outlook.com",
+     "id": 3    
+   }
+,{"nom":"Ricardo Castillo","telephone":"450-638-9497","courriel":"Castir@outlook.com"}

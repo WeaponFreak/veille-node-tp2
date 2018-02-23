@@ -1,0 +1,62 @@
+<%
+	let objOrdre={
+	"_id": "asc",
+	"nom": "asc",
+	"prenom": "asc",
+	"telephone": "asc"
+	}
+
+	if(typeof cle !== "undefined" && cle){
+		objOrdre[cle]=ordre;
+	}
+%>
+<table class="tableau">
+ <thead>
+ <th><a href='/trier/_id/<%= objOrdre._id %>'>ID</a></th>
+ <th><a href='/trier/nom/<%= objOrdre.nom %>'>Nom</a></th> 
+ <th><a href='/trier/prenom/<%= objOrdre.prenom %>'>Prenom</a></th>
+ <th><a href='/trier/telephone/<%= objOrdre.telephone %>'>Telephone</a></th> 
+ </thead>
+ <% adresse.forEach(elm => {%>
+ <tr id=rangPerso>
+ <td><%= elm._id %></td>
+ <td contenteditable='true'><%= elm.nom %></td>
+ <td contenteditable='true'><%= elm.prenom %></td>
+ <td contenteditable='true'><%= elm.telephone %></td>
+ <td><a id="det" href="/detruire/<%= elm._id %>">Delete</a></td>
+ <td><a id="sauv" class='sauver' href="#">Sauver</a></td>
+ </tr>
+ <% }) %>
+ </table>
+
+<script type="text/javascript">
+ let elmSauver = document.querySelectorAll('.sauver')
+ console.log('elmSauver = ' + elmSauver.length)
+ for (elm of elmSauver)
+ {
+ elm.addEventListener('click', function(){
+ /* 
+ console.log(this
+ .parentNode
+ .parentNode
+ .children[1].innerHTML)
+ */
+ let laLigne = this.parentNode.parentNode
+ let id = laLigne.children[0].innerHTML
+ let nom = laLigne.children[1].innerHTML
+ let prenom = laLigne.children[2].innerHTML
+ let telephone = laLigne.children[3].innerHTML
+
+let elmForm = document.getElementById('mon_formulaire_modifier')
+ console.log(elmForm.tagName)
+ let elmInput = elmForm.querySelectorAll('input')
+ elmInput[0].value = id
+ elmInput[1].value = nom
+ elmInput[2].value = prenom
+ elmInput[3].value = telephone
+
+elmForm.submit()
+
+ })
+ } 
+</script>
