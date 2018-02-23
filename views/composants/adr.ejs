@@ -12,14 +12,14 @@
 %>
 <table class="tableau">
  <thead>
- <th><a href='/trier/_id/<%= objOrdre._id %>'>ID</a></th>
+ <th id="titreId"><a href='/trier/_id/<%= objOrdre._id %>'>ID</a></th>
  <th><a href='/trier/nom/<%= objOrdre.nom %>'>Nom</a></th> 
  <th><a href='/trier/prenom/<%= objOrdre.prenom %>'>Prenom</a></th>
  <th><a href='/trier/telephone/<%= objOrdre.telephone %>'>Telephone</a></th> 
  </thead>
  <% adresse.forEach(elm => {%>
  <tr id=rangPerso>
- <td><%= elm._id %></td>
+ <td id="nomId"><%= elm._id %></td>
  <td contenteditable='true'><%= elm.nom %></td>
  <td contenteditable='true'><%= elm.prenom %></td>
  <td contenteditable='true'><%= elm.telephone %></td>
