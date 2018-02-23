@@ -1,21 +1,18 @@
-<form class='mon_formulaire' action="/ajouter" name='mon_formulaire' id='mon_formulaire_ajouter' method="POST" >
+<form class='mon_formulaire' action="/ajouter" name='mon_formulaire_ajouter' id='mon_formulaire_ajouter' method="POST" >
  <input type = "text" placeholder="Nom" name = "nom"> 
  <input type = "text" placeholder="Prénom" name = "prenom">
  <input type = "text" placeholder="Téléphone" name = "telephone">
  <input type="submit" value='Ajouter'>
 </form>
 
-<form class='mon_formulaire' action="/modifier" name='mon_formulaire' id='mon_formulaire_modifier' method="POST" >
+<form class='mon_formulaire' action="/modifier" name='mon_formulaire_modifier' id='mon_formulaire_modifier' method="POST" >
  <input type = "hidden" placeholder="_id" name = "_id">
  <input type = "hidden" placeholder="Nom" name = "nom"> 
  <input type = "hidden" placeholder="Prénom" name = "prenom">
  <input type = "hidden" placeholder="Téléphone" name = "telephone">
 </form>
 
-<form class='mon_formulaire' action="/chercher" name='mon_formulaire' id='mon_formulaire_chercher' method="POST" >
- <input type = "text" placeholder="_id" name = "_id">
- <input type = "text" placeholder="Nom" name = "nom"> 
- <input type = "text" placeholder="Prénom" name = "prenom">
- <input type = "text" placeholder="Téléphone" name = "telephone">
- <input type="submit" value='chercher'>
+<form class='mon_formulaire' action="/recherche" name='mon_formulaire_rechercher' id='mon_formulaire_rechercher' method="POST" >
+ <input type = "text" placeholder="Nom" name = "recherche"> 
+ <input type="submit" value='rechercher'>
 </form>
