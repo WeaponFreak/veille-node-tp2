@@ -12,15 +12,26 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs'); // générateur de template
 
 
-app.get('/', (req, res) => {
-    let cursor = db.collection('adresse')
-                  .find()
-                  .toArray(function(err, resultat){
-                     if (err) return console.log(err);
-                     // transfert du contenu vers la vue index.ejs (renders)
-                     // affiche le contenu de la BD       
-                      res.render('gabarit.ejs', {adresse: resultat});
-                    });
+app.get('/', function (req, res) {
+
+ 	res.render('gabarit.ejs')
+})
+
+app.get('/accueil', function (req, res) {
+
+  res.render('gabarit.ejs')
+})
+
+
+app.get('/list', function (req, res) {
+
+	var cursor = db.collection('adresse').find().toArray(function(err, resultat){
+	 if (err) return console.log(err)
+	 	 console.log('util = ' + util.inspect(resultat));
+	 // transfert du contenu vers la vue index.ejs (renders)
+	 // affiche le contenu de la BD
+	 res.render('list.ejs', {adresse: resultat})
+	}) 
 })
 
 
@@ -41,7 +52,7 @@ app.post('/ajouter', (req, res) => {
  db.collection('adresse').save(req.body, (err, resultat) => {
  if (err) return console.log(err)
  console.log('sauvegarder dans la BD')
- res.redirect('/')
+ res.redirect('/list')
  })
 })
 ///// destruction de personne dans la bd
@@ -53,7 +64,7 @@ app.get('/detruire/:id', (req, res) => {
 		if (err) return res.send(500, err)
 		var cursor = db.collection('adresse').find().toArray(function(err, resultat) {
 			if (err) return console.log(err)
-			res.render('gabarit.ejs', {adresse: resultat})
+			res.render('list.ejs', {adresse: resultat})
 		})
 	})
 })
@@ -74,7 +85,7 @@ app.get('/trier/:cle/:ordre', (req, res) => {
 
 		console.log(ordre);
 
-		res.render('gabarit.ejs', {adresse: resultat, cle, ordre})
+		res.render('list.ejs', {adresse: resultat, cle, ordre})
 	})
 	
 })
@@ -91,7 +102,7 @@ app.post('/modifier', (req, res) => {
 	 if (err) return console.log(err)
 
 		 console.log('sauvegarder dans la BD')
-		 res.redirect('/')
+		 res.redirect('/list')
 	 })
 })
 ////peupler
@@ -105,14 +116,14 @@ app.get('/peupler', (req, res) => {
 	 })
  }
 
- res.redirect('/')
+ res.redirect('/list')
 })
 ///// vider
 app.get('/vider', (req, res) => {
  db.collection("adresse").drop(function(err, resultat) {
     if (err) return console.log(err)
   });
- res.redirect('/')
+ res.redirect('/list')
 })
 
 ///// chercher
@@ -123,6 +134,6 @@ app.post('/recherche', (req, res) => {
 	db.collection('adresse').find({$or : [{nom:req.body.recherche},{prenom:req.body.recherche}]}).toArray(function(err, resultat){
 		if (err) return console.log(err)
 	 	console.log('util = ' + util.inspect(resultat));
-		res.render('gabarit.ejs', {adresse: resultat})
+		res.render('list.ejs', {adresse: resultat})
 	})
 })
