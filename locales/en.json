@@ -1,0 +1,17 @@
+{
+	"courriel": "Email",
+	"accueil": "Home",
+	"vider": "Clear",
+	"adresse": "Adresses",
+	"nom": "Last Name",
+	"prenom": "First Name",
+	"telephone": "Phone",
+	"ajouter": "Add",
+	"modifier": "Update",
+	"peupler": "Fill",
+	"supprimer": "Delete",
+	"recherche": "Search",
+	"clavardage": "Chat",
+	"enregistrement": "Log in",
+	"transmettre": "Submit"
+}

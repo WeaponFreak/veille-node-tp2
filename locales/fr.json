@@ -1,0 +1,17 @@
+{
+	"courriel": "courriel",
+	"accueil": "Accueil",
+	"vider": "Vider",
+	"adresse": "Adresse",
+	"nom": "Nom",
+	"prenom": "Prenom",
+	"telephone": "Téléphone",
+	"ajouter": "Ajouter",
+	"modifier": "Modifier",
+	"peupler":  "Peupler",
+	"supprimer": "Supprimer",
+	"recherche": "Recherche",
+	"clavardage": "Clavardage",
+	"enregistrement": "Enregistrement",
+	"transmettre": "Transmettre"
+}
