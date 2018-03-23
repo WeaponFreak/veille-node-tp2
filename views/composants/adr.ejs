@@ -13,9 +13,9 @@
 <table class="tableau">
  <thead>
  <th id="titreId"><a href='/trier/_id/<%= objOrdre._id %>'>ID</a></th>
- <th><a href='/trier/nom/<%= objOrdre.nom %>'>Nom</a></th> 
- <th><a href='/trier/prenom/<%= objOrdre.prenom %>'>Prenom</a></th>
- <th><a href='/trier/telephone/<%= objOrdre.telephone %>'>Telephone</a></th> 
+ <th><a href='/trier/nom/<%= objOrdre.nom %>'><%=__('nom') %></a></th> 
+ <th><a href='/trier/prenom/<%= objOrdre.prenom %>'><%=__('prenom') %></a></th>
+ <th><a href='/trier/telephone/<%= objOrdre.telephone %>'><%=__('telephone') %></a></th> 
  </thead>
  <% adresse.forEach(elm => {%>
  <tr id=rangPerso>
@@ -23,8 +23,8 @@
  <td contenteditable='true'><%= elm.nom %></td>
  <td contenteditable='true'><%= elm.prenom %></td>
  <td contenteditable='true'><%= elm.telephone %></td>
- <td><a id="det" href="/detruire/<%= elm._id %>">Delete</a></td>
- <td><a id="sauv" class='sauver' href="#">Sauver</a></td>
+ <td><a id="det" class='detruire' href="/detruire/<%= elm._id %>"><%=__('supprimer') %></a></td>
+ <td><a id="sauv" class='sauver' href="#"><%=__('modifier') %></a></td>
  </tr>
  <% }) %>
  </table>
@@ -59,4 +59,28 @@ elmForm.submit()
 
  })
  } 
+
+let elmDetruire = document.querySelectorAll('.detruire')
+console.log(elmDetruire.length)
+for (elm of elmDetruire)
+{
+    elm.addEventListener('click', function(){
+    console.log(this.parentElement.parentElement.id)
+    let elmTr = this.parentElement.parentElement 
+    let _id = elmTr.querySelector('td:nth-child(1)').innerHTML
+   
+    xhr.open('POST', "/detruire_ajax", true);
+      data = { 
+         "_id" : _id 
+        }
+        console.log(data)
+        sData = JSON.stringify(data);
+         console.log("sData = " + sData)
+        xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.send(sData);
+        //xhr.send('{"id":"5578575785875785785"}');
+        xhr.addEventListener("readystatechange", traiterRequest, false);
+    })
+}		
+
 </script>

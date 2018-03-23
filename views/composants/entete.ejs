@@ -1,3 +1,15 @@
+<%
+if(getLocale()=="fr"){
+	langue = "en"
+}
+else{
+	
+	langue = "fr"
+}
+
+%>
+
+
 <header class='entete'>
 
 
@@ -7,9 +19,12 @@
 	</section>
 
 	<nav> 
-	 <a href='/vider'><i class="fa fa-industry" aria-hidden="true"></i>Vider</a>
-	 <a href='/'><i class="fa fa fa-users" aria-hidden="true"></i>Accueil</a>
-	 <a href='/list'><i class="fa fa-graduation-cap" aria-hidden="true"></i>Adresse</a>
-	 <a href='/peupler'><i class="fa fa-keyboard-o" aria-hidden="true"></i>Peupler</a>
+	 
+	 <a href='/'><i class="fa fa fa-users" aria-hidden="true"></i><%=__('accueil') %></a>
+	 <a href='/vider'><i class="fa fa-industry" aria-hidden="true"></i><%=__('vider') %></a>
+	 <a href='/list'><i class="fa fa-graduation-cap" aria-hidden="true"></i><%=__('adresse') %></a>
+	 <a href='/peupler'><i class="fa fa-keyboard-o" aria-hidden="true"></i><%=__('peupler') %></a>
+	  <a href='/chat'><i class="fa fa-keyboard-o" aria-hidden="true"></i><%=__('clavardage') %></a>
+	  <a href='/<%= langue %>'><i class="fa fa-bars" aria-hidden="true"></i><%= langue %></a>
 	</nav> 
 </header>

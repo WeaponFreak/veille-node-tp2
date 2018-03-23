@@ -1,18 +1,55 @@
-<form class='mon_formulaire' action="/ajouter" name='mon_formulaire_ajouter' id='mon_formulaire_ajouter' method="POST" >
- <input type = "text" placeholder="Nom" name = "nom"> 
- <input type = "text" placeholder="Prénom" name = "prenom">
- <input type = "text" placeholder="Téléphone" name = "telephone">
- <input type="submit" value='Ajouter'>
-</form>
+<div class='mon_formulaire' name='mon_formulaire_ajouter' id='mon_formulaire_ajouter' >
+  <input id="nom_ajouter" type="text" placeholder="<%=__('nom') %>" name="nom" id='nom'>
+  <input id="prenom_ajouter" type="text" placeholder="<%=__('prenom') %>" name="prenom" id='prenom'>
+  <input id="telephone_ajouter" type="text" placeholder="<%=__('telephone') %>" name="telephone" id='telephone'>
+  <input id="courriel_ajouter" type="text" placeholder="<%=__('courriel') %>" name="courriel" id='courriel'>
+  <button id='ajouter'><%=__('ajouter') %></button>
+ 
+</div>
 
-<form class='mon_formulaire' action="/modifier" name='mon_formulaire_modifier' id='mon_formulaire_modifier' method="POST" >
- <input type = "hidden" placeholder="_id" name = "_id">
- <input type = "hidden" placeholder="Nom" name = "nom"> 
- <input type = "hidden" placeholder="Prénom" name = "prenom">
- <input type = "hidden" placeholder="Téléphone" name = "telephone">
+<form class='mon_formulaire' action="/modifier" name='mon_formulaire_modifier' id='mon_formulaire_modifier' method="POST">
+     <input  type="hidden" placeholder="_id" name="_id" id='_id'>
+    <input  type="hidden" placeholder="<%=__('nom') %>" name="nom" id='nom'>
+    <input  type="hidden" placeholder="<%=__('prenom') %>" name="prenom" id='prenom'>
+    <input  type="hidden" placeholder="<%=__('telephone') %>" name="telephone" id='telephone'>
+    <input  type="hidden" placeholder="<%=__('courriel') %>" name="courriel" id='courriel'>
+    <button type="hidden"><%=__('modifier') %></button>
 </form>
 
 <form class='mon_formulaire' action="/recherche" name='mon_formulaire_rechercher' id='mon_formulaire_rechercher' method="POST" >
- <input type = "text" placeholder="Nom" name = "recherche"> 
- <input type="submit" value='rechercher'>
+	<input type = "text" placeholder="<%=__('nom') %>" name = "recherche"> 
+	<button type="submit"><%=__('recherche') %></button>
 </form>
+
+
+<script type="text/javascript">
+	let elmAjouter = document.getElementById('ajouter')
+
+            elmAjouter.addEventListener('click', function(){       
+       
+            let nom = document.getElementById('nom_ajouter').value
+            let prenom = document.getElementById('prenom_ajouter').value
+            let telephone = document.getElementById('telephone_ajouter').value
+            let courriel = document.getElementById('courriel_ajouter').value
+            
+            xhr.open('POST', "/ajouter_ajax", true);
+                
+            data = {
+     
+                "nom" : nom,
+                "prenom" : prenom,
+                "telephone" : telephone,
+                "courriel" : courriel
+            }
+                
+            sData = JSON.stringify(data);
+            console.log("sData = " + sData)
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.send(sData);
+            xhr.addEventListener("readystatechange", traiterRequest, false);
+
+           
+                
+            })
+    
+</script>
