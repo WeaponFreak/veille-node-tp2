@@ -7,6 +7,10 @@ const util = require("util");
 const peupler = require("./mes_module/peupler");
 const tableau = require("./mes_module/peupler/tableau.js")
 const maxNom = tableau.tabNom.length;
+const http = require('http')
+///////
+const server = http.createServer(app);
+const io = require('./mes_module/chat_socket').listen(server);
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs'); // générateur de template
