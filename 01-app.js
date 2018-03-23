@@ -172,3 +172,13 @@ app.post('/detruire_ajax', (req, res) => {
  })
 
 })
+/////
+app.post('/ajouter_ajax', (req,res) => {
+console.log('route /ajax_ajouter')	
+ db.collection('adresse').save(req.body, (err, result) => {
+ if (err) return console.log(err)
+ console.log('req.body._id =' + req.body._id)	
+ console.log('sauvegarder dans la BD')
+    res.send(JSON.stringify(req.body))
+ })
+})
