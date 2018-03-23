@@ -16,6 +16,21 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs'); // générateur de template
 
 
+/* on associe le moteur de vue au module «ejs» */
+app.use(express.static('public'));
+const i18n = require('i18n');
+const cookieParser = require ('cookie-parser');
+app.use(cookieParser())
+/* Ajoute l'objet i18n à l'objet global «res» */
+i18n.configure({
+	locales : ['fr', 'en'],
+	cookie : 'langueChoisie',
+	directory : __dirname + '/locales'
+})
+app.use(i18n.init);
+
+
+
 app.get('/', function (req, res) {
 
  	res.render('gabarit.ejs')
@@ -46,10 +61,29 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) 
  if (err) return console.log(err);
  db = database.db('carnet_adresse');
 // lancement du serveur Express sur le port 8081
- app.listen(8081, () => {
+ server.listen(8081, () => {
  console.log('connexion à la BD et on écoute sur le port 8081');
  })
 })
+
+
+/////////////////
+
+app.get('/:local(en|fr)', function (req, res) {
+	console.log("req.params.local = " + req.params.local)
+	res.cookie('langueChoisie', req.params.local)
+	res.setLocale(req.params.local)
+	console.log(res.__('courriel'))
+	res.redirect(req.get('referer'))
+});
+///////
+app.get('/', function (req, res) {
+	console.log("req.cookies.langueChoisie = "+ req.cookies.langueChoisie)
+	console.log(res.__('courriel'))
+	res.render('accueil.ejs')
+});
+
+
 /////// ajouter nom dans mongo db 
 
 app.post('/ajouter', (req, res) => {

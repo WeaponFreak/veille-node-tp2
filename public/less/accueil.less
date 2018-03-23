@@ -42,7 +42,7 @@ footer{
 		}
 
 }
-form{
+.mon_formulaire{
 	margin: 5px;
 	color: #449;
 	margin-left: 30%;
@@ -156,6 +156,14 @@ table thead th:first-child {
 #sauv:hover,#sauv:active{
 	color: green;
 }
+#mon_formulaire_modifier{
+	display: none;
+}
+@media only screen and (max-width: 1350px) {
+	body table{
+		width: 550px;	
+	}
+}
 
 
 @media only screen and (max-width: 1000px) {
@@ -183,4 +191,13 @@ table thead th:first-child {
 	#sauv{
 		color: green;		
 	}
+	.mon_formulaire{
+		
+		margin-left: 0px;
+	}
+	body table{
+		margin-left: 0px;
+		width: 318px;	
+	}
 }
+
