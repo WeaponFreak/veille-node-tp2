@@ -160,3 +160,15 @@ app.post('/modifier_ajax', (req, res) => {
 		res.send(JSON.stringify(req.body));
 	})
 })
+///////////
+app.post('/detruire_ajax', (req, res) => {
+ console.log('route /detruire')
+ console.log('utilreq.body = ' + util.inspect(req.body));	
+ // console.log('util = ' + util.inspect(req.body));
+ db.collection('adresse').findOneAndDelete({"_id": ObjectID(req.body._id)}, (err, resultat) => {
+
+	if (err) return console.log(err)
+	 res.send(JSON.stringify(resultat))  // redirige vers la route qui affiche la collection
+ })
+
+})
