@@ -137,3 +137,13 @@ app.post('/recherche', (req, res) => {
 		res.render('list.ejs', {adresse: resultat})
 	})
 })
+/////chat
+var nsp = io.of('/mon-espace-de-nom');
+nsp.on('connection', function(socket){
+  console.log('une connexion');
+  nsp.emit('bonjour', 'Bonjour tout le monde!');
+});
+
+app.get('/chat', (req, res) => {
+	res.render('socket_vues.ejs')
+})
